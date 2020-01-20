@@ -1,0 +1,105 @@
+@charset "UTF-8";
+html * {
+  outline: 0 !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  -wenkit-font-smoothing: subpixel-antialiased;
+}
+
+html {
+  font-size: 16px;
+}
+
+.body-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item a {
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 20px;
+}
+
+.footer {
+  background-color: #005aab;
+  height: auto;
+  color: #fff;
+}
+
+.footer hr {
+  border-top: 1px solid #58a2e4;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/*#uploadImage{*/
+/*    position: relative;overflow: hidden;*/
+/*}*/
+/*#uploadImage::after {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 28.5%;*/
+/*    content: 'upload';*/
+/*    display: inline-block;*/
+/*    border-radius: 3px;*/
+/*    padding: 1% 5%;*/
+/*    color: #fff;*/
+/*    background-color: #0062cc;*/
+/*    border-color: #005cbf;*/
+/*    outline: none;*/
+/*    white-space: nowrap;*/
+/*    -webkit-user-select: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.inputfile {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.inputfile + label {
+  color: white;
+  background-color: #0062cc;
+  border-color: #005cbf;
+  display: inline-block;
+  cursor: pointer;
+  width: auto;
+  padding: 6px;
+  text-align: center;
+  border-radius: 3px;
+}
+/*Responsive*/
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 1550px) {
+
+}
+
+@media screen and (min-width: 1600px) {
+
+}
+
+/*# sourceMappingURL=common.css.map */

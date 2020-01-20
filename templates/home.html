@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>kng</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/common.css">
+</head>
+<body>
+<div class="body-wrapper">
+    <div class="wrapper-content">
+        <div class="main-contents">
+            <section id="video" class="banner banner-4">
+                <form id="uploadForm" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                        <div class="m-4">
+                            <div class="row text-center pt-4">
+                                <div class="col-6">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video width="400" controls id="originalVideo">
+                                            <source src="" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div id='outputVideo' class="embed-responsive embed-responsive-16by9">
+                                        <video width="400" controls id="processVideo">
+                                            <source src="" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress mt-3" id='progressBar' style="display:none;">
+                                <div class="progress progress-bar progress-bar-striped bg-success"
+                                     role="progressbar" id="progressDivId" aria-valuenow="100" style="width: 0%"
+                                     aria-valuemin="0">
+                                </div>
+                                <div style="height: 10px;"></div>
+                            </div>
+                            <div id="success" class="d-none alert alert-success text-center mt-3">Progress success　プログレスが成功しました。</div>
+                            <div class="mt-3 row">
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input type="file" name="file" id="uploadImage" class="inputfile"
+                                                       data-multiple-caption="{count} files selected" multiple/>
+                                                <label class="custom-file-label" for="uploadImage" id="labelfile">
+                                                    <span></span>
+                                                    <span class="error">ファイルを選択する</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Select Categories　カテゴリーを選択する
+                                            </div>
+                                            <div class="m-1 collapse show " id="collapseExample"
+                                                 aria-labelledby="headingTwo" data-parent="#accordion">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="age" type="checkbox"
+                                                           value="1" id="defaultCheck1">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Age Prediction　年齢推定
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="gender" type="checkbox"
+                                                           value="2" id="defaultCheck2">
+                                                    <label class="form-check-label" for="defaultCheck2">
+                                                        Gender Prediction　性別推定
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="emotion" type="checkbox"
+                                                           value="3" id="defaultCheck3">
+                                                    <label class="form-check-label" for="defaultCheck3">
+                                                        Emotion Prediction　感情推定
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="objects" type="checkbox"
+                                                           value="4" id="defaultCheck4">
+                                                    <label class="form-check-label" for="defaultCheck4">
+                                                        Objects Detection　物体識別
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="recognition" type="checkbox"
+                                                           value="5" id="defaultCheck5">
+                                                    <label class="form-check-label" for="defaultCheck5">
+                                                        Face Recognition　顔認識
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="scenesChange" type="checkbox"
+                                                           value="6" id="defaultCheck6">
+                                                    <label class="form-check-label" for="defaultCheck6">
+                                                        Scenes Change　シーンチェンジ
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="faceDetection" type="checkbox"
+                                                           value="6" id="defaultCheck7">
+                                                    <label class="form-check-label" for="defaultCheck7">
+                                                        Face Detection  顔検出
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div style="display: flex;justify-content: space-between;">
+                                        <input class="" type="hidden" name='btnSubmit' value="Start"/>
+                                        <input class="btn btn-danger" id="start" type="submit" name='btnSubmit'
+                                               value="スタート"/>
+                                        <a href="" class="btn btn-success" id="download">ダウンロード</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <footer class="footer mt-5">
+            <div class="p-3">
+                <div class="container">
+                    <div class="text-center">
+                        © 2019 kng. All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="static/js/popper.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.error').hide();
+  var inputFile = document.querySelector('#uploadImage');
+  var label = document.querySelector('#labelfile');
+  var labelVal = label.innerHTML;
+  var fileName = '';
+  inputFile.addEventListener('change', function (e) {
+    if (this.files && this.files.length > 1)
+      fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+    else
+      fileName = e.target.value.split('\\').pop();
+    if (fileName) {
+      label.querySelector('span').innerHTML = fileName;
+      $('.error').removeClass('d-block');
+      $('#success').removeClass('d-block');
+    } else {
+      label.innerHTML = labelVal;
+    }
+  });
+  $('input[name="select[]"]').on('click', function () {
+    if (this.checked) {
+      this.setAttribute("checked", "checked");
+      $(".category").removeClass('error');
+    } else {
+      this.removeAttribute("checked");
+    }
+  });
+  $('#start').click(function (event) {
+    event.preventDefault();
+    var form = $('#uploadForm')[0];
+    var data = new FormData(form);
+    $.ajax({
+      beforeSend: function (xhr) {
+        if (fileName == '') {
+          $('.error').addClass('d-block');
+          return false;
+        } else {
+            $("#progressBar").css('display', 'block');
+            $('#start').attr('disabled', 'disabled');
+        }
+      },
+      xhr: function () {
+        var xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function (evt) {
+          //post
+          if (evt.lengthComputable) {
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
+            if(percentComplete == 100) {
+                progressBar();
+            }
+          }
+        }, false);
+        return xhr;
+      },
+
+      // type: 'GET',
+      type: 'POST',
+      url: "/upload",
+      enctype: 'multipart/form-data',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 800000,
+      success: function (response) {
+        let data = response.data;
+        // $('#processVideo').html('<source src="' + data.path + '" type="video/mp4">')
+      },
+      error: function (error) {
+
+      },
+      complete: function (xhr) {
+        let data = JSON.parse(xhr.responseText).data;
+        if (xhr.responseText && xhr.responseText != "error") {
+          $('#originalVideo').html('<source src="' + data.originalVideo.path + '" type="video/mp4">');
+          $('#processVideo').html('<source src="' + data.processVideo.path + '" type="video/mp4">')
+          $('a#download').attr({'href': data.processVideo.path, 'download': data.processVideo.title});
+          $('#start').removeAttr('disabled');
+          $('#success').addClass('d-block');
+        } else {
+          $('#start').removeAttr('disabled');
+          $('#success').removeClass('d-block');
+        }
+        $("#progressBar").hide();
+        clearInterval(interval);
+      }
+    });
+  });
+  function progressBar() {
+    var interval = setInterval(function tick() {
+        var flag_call = true;
+        if(flag_call) {
+            flag_call = false;
+            $.ajax({url: "/progress", type: 'GET', success: function(result){
+                flag_call = true;
+                if (typeof result.progress != 'undefined' && result.progress != '') {
+                    progress = parseInt(result.progress);
+                    if(progress < 100) {
+                        $('.progress-bar').css('width', progress + "%");
+                        $('.progress-bar').html(progress + "%");
+                    } else {
+                        $('.progress-bar').css('width', "100%");
+                        $('.progress-bar').html("100%");
+                        $("#progressBar").hide();
+                        clearInterval(interval);
+                    }
+                }
+            }});
+        }
+
+    }, 2000);
+  }
+})
+</script>
+</body>
+</html>
