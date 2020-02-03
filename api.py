@@ -9,35 +9,6 @@ import config
 from synthetic import Synthetic
 import argparse
 
-parser = argparse.ArgumentParser(description="Synthetic")
-# Face detection arguments
-parser.add_argument('--flip', default=False, type=bool)
-parser.add_argument('--face_detection_model', default='models/retinaface-R50/R50', type=str,
-                    help="Path to face detection model, examples, /50 is prefix")
-# parser.add_argument('--face_detection_model_path', default='../models/mnet.25/mnet.25', type=str)
-# Age, emotion, gender
-parser.add_argument('--ga_model', default='models/gamodel-r50/model, 0',
-                    help='Path to gender age prediction model')
-parser.add_argument('--emotion_model', type=str, default="models/emotion_model.hdf5",
-                    help="Path to emotion prediction model")
-# Face features
-# parser.add_argument('--batch_size', type=int, default=32)
-parser.add_argument('--emb_size', type=int, default=512, help="Embedding size of face features")
-parser.add_argument('--face_feature_model', type=str, default='models/model-r100-ii/model, 0',
-                    help="Path to face features extraction model")
-# Object Detection
-parser.add_argument('--object_detection_model', default='models/resnet50_coco_best_v2.1.0.h5',
-                    help='Path to objects detection model')
-# Face recognition
-parser.add_argument('--batch_size', type=int, default=32, help="Batch size")
-parser.add_argument('--epochs', type=int, default=300, help="Epochs")
-# parser.add_argument('--emb_size', type=int, default=512, help="Embedding size")
-parser.add_argument('--train_dir', type=str, default="datasets/train/features")
-parser.add_argument('--test_dir', type=str, default="datasets/val/features")
-parser.add_argument('--train', action='store_true')
-
-
-parser.add_argument('--gpuid', type=int, default=0, help="GPU ID")
 
 prefix = "/home/quangvy2703/Objects-server/"
 
@@ -82,41 +53,36 @@ def my_form_post():
   # input_video = path_root + input_video
   # output_video = path_root + output_video
 
-  # cmd = "python /media/vy/DATA/projects/face/project3/Objects/main.py  " \
-  #         "--input_video {}  " \
-  #         "--output_video {} " \
-  #         "--train_dir {} --test_dir {}  " \
-  #         "--use_ga_prediction {} " \
-  #         "--use_emotion_prediction {} " \
-  #         "--use_face_detection {} " \
-  #         "--use_face_recognition {} " \
-  #         "--use_scenes_change {} " \
-  #         "--use_objects_detection {} " \
-  #         "--n_classes {}".format(input_video, output_video, train_dir, test_dir, ga, emotion,
-  #                                 face_detection, face_recognition, scenes_change, objects_detection, n_classes)
+  parser = argparse.ArgumentParser(description="Synthetic")
+  # Face detection arguments
+  parser.add_argument('--flip', default=False, type=bool)
+  parser.add_argument('--face_detection_model', default='models/retinaface-R50/R50', type=str,
+                      help="Path to face detection model, examples, /50 is prefix")
+  # parser.add_argument('--face_detection_model_path', default='../models/mnet.25/mnet.25', type=str)
+  # Age, emotion, gender
+  parser.add_argument('--ga_model', default='models/gamodel-r50/model, 0',
+                      help='Path to gender age prediction model')
+  parser.add_argument('--emotion_model', type=str, default="models/emotion_model.hdf5",
+                      help="Path to emotion prediction model")
+  # Face features
+  # parser.add_argument('--batch_size', type=int, default=32)
+  parser.add_argument('--emb_size', type=int, default=512, help="Embedding size of face features")
+  parser.add_argument('--face_feature_model', type=str, default='models/model-r100-ii/model, 0',
+                      help="Path to face features extraction model")
+  # Object Detection
+  parser.add_argument('--object_detection_model', default='models/resnet50_coco_best_v2.1.0.h5',
+                      help='Path to objects detection model')
+  # Face recognition
+  parser.add_argument('--batch_size', type=int, default=32, help="Batch size")
+  parser.add_argument('--epochs', type=int, default=300, help="Epochs")
+  # parser.add_argument('--emb_size', type=int, default=512, help="Embedding size")
+  parser.add_argument('--train_dir', type=str, default="datasets/train/features")
+  parser.add_argument('--test_dir', type=str, default="datasets/val/features")
+  parser.add_argument('--train', action='store_true')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#  cmd = "sudo python /home/quangvy2703/Objects/_main.py"
-#  os.system(cmd)
-
+  parser.add_argument('--gpuid', type=int, default=0, help="GPU ID")
+  
   parser.add_argument('--input_video', type=str, default=input_video)
   parser.add_argument('--output_video', type=str, default=output_video)
   parser.add_argument('--use_gender_prediction', type=bool, default=gender)
