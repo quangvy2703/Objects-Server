@@ -25,8 +25,8 @@ def home():
 def my_form_post():
   file = request.files['file']
   file_name = id_generator() + '.mp4'
-  input_video = prefix + 'static/uploads/' + file_name
-  output_video = prefix + 'static/uploads/converts/' + file_name
+  input_video = 'static/uploads/' + file_name
+  output_video = 'static/uploads/converts/' + file_name
 
   train_dir = "datasets"
   test_dir = "datasets"
@@ -81,7 +81,7 @@ def my_form_post():
   parser.add_argument('--train', action='store_true')
 
 
-  parser.add_argument('--gpuid', type=int, default=0, help="GPU ID")
+  parser.add_argument('--gpuid', type=int, default=1, help="GPU ID")
   
   parser.add_argument('--input_video', type=str, default=input_video)
   parser.add_argument('--output_video', type=str, default=output_video)
