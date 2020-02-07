@@ -10,7 +10,7 @@ from synthetic import Synthetic
 import argparse
 
 
-prefix = "/home/quangvy2703/Objects-server/"
+prefix = os.getcwd()
 
 app = Flask(__name__)
 
@@ -30,10 +30,11 @@ def my_form_post():
 
   train_dir = "datasets"
   test_dir = "datasets"
-  f = open(prefix + "static/uploads/progress/status.txt", "w")
+  f = open(prefix + "/static/uploads/progress/status.txt", "w")
   f.write("0")
   f.close()
-
+  
+  print(request.values.keys())
   gender = True if 'gender' in request.values.keys() else False
   age = True if 'age' in request.values.keys() else False
   emotion = True if ('emotion' in request.values.keys()) else False
@@ -44,8 +45,7 @@ def my_form_post():
   n_classes = 4
   if gender or age or emotion or face_recognition:
     face_detection = True
-  else:
-    face_detection = False
+
 
   file.save(input_video)
   file.close()
@@ -81,7 +81,7 @@ def my_form_post():
   parser.add_argument('--train', action='store_true')
 
 
-  parser.add_argument('--gpuid', type=int, default=1, help="GPU ID")
+  parser.add_argument('--gpuid', type=int, default=0, help="GPU ID")
   
   parser.add_argument('--input_video', type=str, default=input_video)
   parser.add_argument('--output_video', type=str, default=output_video)
@@ -123,6 +123,12 @@ def get_progress():
   progress = f.read()
   return {'progress': progress}
 
+@app.route('/return', methods=['GET'])
+def get_return():
+  f = open("static/uploads/progress/return.txt", "r")
+  str_return = f.read()
+  return eval(str_return)
+
 if __name__ == '__main__':
-    app.run(host="10.142.0.13", port=8000)
+    app.run(host="0.0.0.0", port=8000)
 

@@ -219,9 +219,7 @@ $(document).ready(function () {
       complete: function (xhr) {
         let data = JSON.parse(xhr.responseText).data;
         if (xhr.responseText && xhr.responseText != "error") {
-          $('#originalVideo').html('<source src="' + data.originalVideo.path + '" type="video/mp4">');
-          $('#processVideo').html('<source src="' + data.processVideo.path + '" type="video/mp4">')
-          $('a#download').attr({'href': data.processVideo.path, 'download': data.processVideo.title});
+          showReturn(data)
           $('#start').removeAttr('disabled');
           $('#success').addClass('d-block');
         } else {
@@ -229,7 +227,6 @@ $(document).ready(function () {
           $('#success').removeClass('d-block');
         }
         $("#progressBar").hide();
-        clearInterval(interval);
       }
     });
   });
@@ -246,6 +243,9 @@ $(document).ready(function () {
                         $('.progress-bar').css('width', progress + "%");
                         $('.progress-bar').html(progress + "%");
                     } else {
+                        $.ajax({url: "/return", type: 'GET', success: function(result){
+                          showReturn(result.data)
+                        }});
                         $('.progress-bar').css('width', "100%");
                         $('.progress-bar').html("100%");
                         $("#progressBar").hide();
@@ -257,7 +257,14 @@ $(document).ready(function () {
 
     }, 2000);
   }
+
+  function showReturn(data) {
+    $('#originalVideo').html('<source src="' + data.originalVideo.path + '" type="video/mp4">');
+    $('#processVideo').html('<source src="' + data.processVideo.path + '" type="video/mp4">')
+    $('a#download').attr({'href': data.processVideo.path, 'download': data.processVideo.title});
+  }
 })
 </script>
 </body>
 </html>
+
